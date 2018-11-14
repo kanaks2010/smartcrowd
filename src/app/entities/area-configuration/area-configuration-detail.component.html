@@ -1,0 +1,54 @@
+<div class="box-container" *ngIf="areaConfiguration">
+    <h2><span jhiTranslate="smartcrowdApp.areaConfiguration.detail.title">Area Configuration</span>
+        {{areaConfiguration.id}}</h2>
+    <hr>
+    <!--<jhi-alert-error></jhi-alert-error>-->
+    <dl class="row-md jh-entity-details flex_table">
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.status">Status</span>
+
+            <span>{{areaConfiguration.status}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.createDate">Create Date</span>
+
+            <span>{{areaConfiguration.createDate | date:'mediumDate'}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.updateDate">Update Date</span>
+
+            <span>{{areaConfiguration.updateDate | date:'mediumDate'}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.name">Name</span>
+
+            <span>{{areaConfiguration.name}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.code">Code</span>
+
+            <span>{{areaConfiguration.code}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.parentId">Parent Id</span>
+
+            <span>{{areaConfiguration.parentId}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.groupLebel">Group Lebel</span>
+
+            <span>{{areaConfiguration.groupLebel}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.areaConfiguration.riskRating">Risk Rating</span>
+
+            <span>{{areaConfiguration.riskRating}}</span>
+        </div>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'area-configuration/'+ areaConfiguration.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

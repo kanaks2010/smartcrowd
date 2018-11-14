@@ -1,0 +1,53 @@
+<div class="box-container" *ngIf="user">
+    <h2>
+        <span jhiTranslate="userManagement.detail.title">User</span> [<b>{{user.login}}</b>]
+    </h2>
+    <dl class="row-md jh-entity-details flex_table">
+        <div><span jhiTranslate="userManagement.login">Login</span>
+
+            <span *ngIf="!user.activated">{{user.login}} Deactivated</span>
+            <span *ngIf="user.activated">{{user.login}} Activated</span>
+            <!--<span class="badge badge-danger" -->
+            <!--jhiTranslate="userManagement.deactivated">Deactivated</span>-->
+            <!--<span class="badge badge-success" -->
+            <!--jhiTranslate="userManagement.activated">Activated</span>-->
+        </div>
+        <div><span jhiTranslate="userManagement.firstName">First Name</span>
+            <span>{{user.firstName}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.lastName">Last Name</span>
+            <span>{{user.lastName}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.email">Email</span>
+            <span>{{user.email}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.langKey">Lang Key</span>
+            <span>{{user.langKey}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.createdBy">Created By</span>
+            <span>{{user.createdBy}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.createdDate">Created Date</span>
+            <span>{{user.createdDate | date:'dd/MM/yy HH:mm' }}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.lastModifiedBy">Last Modified By</span>
+            <span>{{user.lastModifiedBy}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.lastModifiedDate">Last Modified Date</span>
+            <span>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</span>
+        </div>
+        <div><span jhiTranslate="userManagement.profiles">Profiles</span>
+
+            <ul class="list-unstyled">
+                <li *ngFor="let authority of user.authorities">
+                    <span class="badge badge-info">{{authority}}</span>
+                </li>
+            </ul>
+        </div>
+    </dl>
+    <button type="submit"
+            routerLink="/user-management"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+</div>

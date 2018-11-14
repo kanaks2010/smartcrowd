@@ -1,0 +1,770 @@
+<nav class="navbar navbar-dark navbar-expand-md jh-navbar">
+    <div class="jh-logo-container float-left">
+        <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse"
+           data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+           aria-label="Toggle navigation" (click)="toggleNavbar()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
+            <span class="logo-img"><img src="img/logo.png"/></span>
+            <!--<span class="navbar-version">{{version}}</span>-->
+        </a>
+    </div>
+    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed"
+         [ngSwitch]="isAuthenticated()">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <span jhiTranslate="global.menu.home">Home</span>
+                    </span>
+                </a>
+            </li>
+            <li *ngSwitchCase="false" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <span jhiTranslate="global.menu.aboutus">aboutus</span>
+                    </span>
+                </a>
+            </li>
+            <li *ngSwitchCase="false" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <span jhiTranslate="global.menu.properties">properties</span>
+                    </span>
+                </a>
+            </li>
+            <li *ngSwitchCase="false" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <span jhiTranslate="global.menu.educationcentre">educationcentre</span>
+                    </span>
+                </a>
+            </li>
+            <li *ngSwitchCase="false" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <span jhiTranslate="global.menu.blog">blog</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <div class="verticalhr"></div>
+            </li>
+            <li *ngSwitchCase="false" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link btn btn-primary" routerLink="/" (click)="collapseNavbar()"
+                   style="border-radius:4px; box-shadow:0 0px 6px 0 rgba(0,0,0,0.1), 0 4px 10px 0 rgba(0,0,0,0.09); color:#fff;">
+                    <span style="color:white !important;">
+                        <span jhiTranslate="global.menu.interestedInSelling" style="color:white !important;">interestedInSelling</span>
+                    </span>
+                </a>
+            </li>
+            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+            <!-- *ngSwitchCase="true" -->
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link btn btn-primary" routerLink="/" (click)="collapseNavbar()">
+                    <span>
+                        <span>My Dashboard</span>
+                    </span>
+                </a>
+            </li>
+            <li *jhiHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-item dropdown pointer"
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle btn btn-primary" ngbDropdownToggle href="javascript:void(0);"
+                   id="entity-mydashboard">
+                    <span>
+                        <span>
+                            Wallet : <span class="cost">AED 0,00,000</span>
+                        </span>
+                    </span>um
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="/" routerLinkActive="active"
+                           [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <span class="cost">AED 0,00,000</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ngbDropdown class="nav-item dropdown pointer">
+                <a class="nav-link dropdown-toggle">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span>
+                            Modules
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                           id="entity-menu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.main">
+                            Entities
+                        </span>
+                    </span>
+                        </a>
+
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li>
+                                <a class="dropdown-item" routerLink="notifications" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.notifications">Notifications</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="attachment-management" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.attachmentManagement">Attachment Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="suitability-test-question-bank"
+                                   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.suitabilityTestQuestionBank">Suitability Test Question Bank</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="suitability-test-result-bank"
+                                   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.suitabilityTestResultBank">Suitability Test Result Bank</span>
+                                </a>
+                            </li>
+
+                            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                        </ul>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                           id="entity-investormenu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.investorRegistration">
+                            Investor Registration
+                        </span>
+                    </span>
+                        </a>
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li>
+                                <a class="dropdown-item" routerLink="investor-registration" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.investorRegistration">Investor Registration</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="registration-settings" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.registrationSettings">Registration Settings</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="origin-of-the-funds" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.originOfTheFunds">Origin Of The Funds</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="proof-of-id" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.proofOfId">Proof Of Id</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="proof-of-residence" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.proofOfResidence">Proof Of Residence</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="industry-rating" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.industryRating">Industry Rating</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="investor-types" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.investorTypes">Investor Types</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="investor-address" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.investorAddress">Investor Address</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="currency" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.currency">Currency</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="id-verification" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.idVerification">Id Verification</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="net-assets" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.netAssets">Net Assets</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="occupation" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.occupation">Occupation</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="investor-income" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.investorIncome">Investor Income</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="annual-income" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.annualIncome">Annual Income</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="investor-annual-salary" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.investorAnnualSalary">Investor Annual Salary</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="investor-intentto-invest" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.investorIntenttoInvest">Investor Intentto Invest</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="investor-sourceof-wealth" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.investorSourceofWealth">Investor Sourceof Wealth</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="aml-result" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.amlResult">Aml Result</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN', 'ROLE_INVENTORY_PROVIDER'" ngbDropdown
+                        class="nav-item dropdown pointer" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                           id="entity-menuProperty">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.propertymenu">
+                            propertymenu
+                        </span>
+                    </span>
+                        </a>
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li>
+                                <a class="dropdown-item" routerLink="property" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.property">Property</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-category" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyCategory">Property Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-type" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyType">Property Type</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="area-configuration" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.areaConfiguration">Area Configuration</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-status" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyStatus">Property Status</span>
+                                </a>
+                            </li>
+                            <!--<li>
+                                <a class="dropdown-item" routerLink="property-entry" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span>Property On Boarding</span>
+                                </a>
+                            </li>-->
+                            <li>
+                                <a class="dropdown-item" routerLink="property-attachment-management"
+                                   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyAttachmentManagement">Property Attachment Management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-facilities-name" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyFacilitiesName">Property Facilities Name</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-aminities-name" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyAminitiesName">Property Aminities Name</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-aminities" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.propertyAminities">Property Aminities</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-facilities" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.propertyFacilities">Property Facilities</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-rating" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyRating">Property Rating</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-reviews" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyReviews">Property Reviews</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-reviews-rating" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyReviewsRating">Property Reviews Rating</span>
+                                </a>
+                            </li>
+                            <!--<li>
+                                <a class="dropdown-item" routerLink="property-recurring-financials" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyRecurringFinancials">Property Recurring Financials</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-transact-financials" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertyTransactFinancials">Property Transact Financials</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="property-seller-dev-manager" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.propertySellerDevManager">Property Seller Dev Manager</span>
+                                </a>
+                            </li>-->
+
+                            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                        </ul>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN', 'ROLE_USER'" ngbDropdown class="nav-item dropdown pointer"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                           id="entity-walletmenu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.walletmenu">
+                            walletmenu
+                        </span>
+                    </span>
+                        </a>
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN', 'ROLE_USER'">
+                                <a class="dropdown-item" routerLink="wallet-investor" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletInvestor">Wallet Investor</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-smart-crowd" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletSmartCrowd">Wallet Smart Crowd</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-investor-deposit" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletInvestorDeposit">Wallet Investor Deposit</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-invest-question-bank"
+                                   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletInvestQuestionBank">Wallet Invest Question Bank</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-pay-invest-instruct"
+                                   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletPayInvestInstruct">Wallet Pay Invest Instruct</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-pay-lock-duration" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletPayLockDuration">Wallet Pay Lock Duration</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-payment-option" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.walletPaymentOption">Wallet Payment Option</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-transaction" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.walletTransaction">Wallet Transaction</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-transaction-log" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletTransactionLog">Wallet Transaction Log</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-withdrawl-pocess" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletWithdrawlPocess">Wallet Withdrawl Pocess</span>
+                                </a>
+                            </li>
+                            <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                                <a class="dropdown-item" routerLink="wallet-invest-qresult-bank"
+                                   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.walletInvestQresultBank">Wallet Invest Qresult Bank</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                           id="entity-menu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.userauditmenu">
+                            userauditmenu
+                        </span>
+                    </span>
+                        </a>
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-module-setup" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.umracModuleSetup">Umrac Module Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-submodule-setup" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.umracSubmoduleSetup">Umrac Submodule Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-identity-setup" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.umracIdentitySetup">Umrac Identity Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-role-setup" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.umracRoleSetup">Umrac Role Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-rights-setup" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.umracRightsSetup">Umrac Rights Setup</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-password-change" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.umracPasswordChange">Umrac Password Change</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-rights-log" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.umracRightsLog">Umrac Rights Log</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-role-assign-user" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span
+                                        jhiTranslate="global.menu.entities.umracRoleAssignUser">Umrac Role Assign User</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="audit-ddl" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.auditDdl">Audit Ddl</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="audit-log" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.auditLog">Audit Log</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="audit-log-history" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.auditLogHistory">Audit Log History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="umrac-action-setup" routerLinkActive="active"
+                                   [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.entities.umracActionSetup">Umrac Action Setup</span>
+                                </a>
+                            </li>
+
+                            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                        </ul>
+                    </li>
+                    <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer"
+                        routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                           id="admin-menu">
+                    <span>
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.admin.main">Administration</span>
+                    </span>
+                        </a>
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li>
+                                <a class="dropdown-item" routerLink="user-management" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.userManagement">User management</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="jhi-tracker" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-eye" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.tracker">User tracker</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="jhi-metrics" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.metrics">Metrics</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="jhi-health" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-heart" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.health">Health</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="jhi-configuration" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-list" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.configuration">Configuration</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="audits" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-bell" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.audits">Audits</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" routerLink="logs" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-tasks" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.logs">Logs</span>
+                                </a>
+                            </li>
+                            <li *ngIf="swaggerEnabled">
+                                <a class="dropdown-item" routerLink="docs" routerLinkActive="active"
+                                   (click)="collapseNavbar()">
+                                    <i class="fa fa-fw fa-book" aria-hidden="true"></i>
+                                    <span jhiTranslate="global.menu.admin.apidocs">API</span>
+                                </a>
+                            </li>
+                            <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+                   id="languagesnavBarDropdown" *ngIf="languages.length > 1">
+                    <span>
+                        <i class="fa fa-flag" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.language">Language</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu *ngIf="languages.length > 1">
+                    <li *ngFor="let language of languages">
+                        <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);"
+                           (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+                  <span *ngIf="!getImageUrl()">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span jhiTranslate="global.menu.account.main">Account
+                    </span>
+                  </span>
+                    <span *ngIf="getImageUrl()">
+                      <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
+                  </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right ml-auto" ngbDropdownMenu>
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" routerLink="settings" routerLinkActive="active"
+                           (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-wrench" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.settings">Settings</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" routerLink="password" routerLinkActive="active"
+                           (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.password">Password</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" (click)="logout()" id="logout">
+                            <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="false">
+                        <a class="dropdown-item" (click)="login()" id="login">
+                            <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.login">Sign in</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="false">
+                        <a class="dropdown-item" routerLink="register" routerLinkActive="active"
+                           (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.account.register">Register</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

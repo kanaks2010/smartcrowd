@@ -1,0 +1,120 @@
+@media only screen and (min-width: 1500px) and (max-width: 1800px) {
+
+    .jh-navbar {
+        max-width: 90%;
+        width: 90%;
+        min-width: 90%;
+    }
+
+    .box-container {
+        max-width: 81%;
+        width: 81%;
+        min-width: 81%;
+    }
+
+    .box-container-old {
+        max-width: 90%;
+        width: 90%;
+        min-width: 90%;
+    }
+
+}
+
+@media only screen and (min-width: 1330px) and (max-width: 1499px) {
+
+    .jh-navbar {
+        max-width: 81%;
+        width: 81%;
+        min-width: 81%;
+    }
+
+    .box-container {
+        max-width: 100%;
+        width: 100%;
+        min-width: 100%;
+    }
+    .reg-box {
+        width: 85% !important;
+    }
+
+    .jh-navbar a.nav-link {
+        font-size: 12px;
+    }
+
+    .btn-signup {
+        font-size: 12px;
+    }
+    .btn-signup:hover {
+        font-size: 12px;
+    }
+
+    .btn-my-dashboard {
+        font-size: 12px;
+    }
+    .btn-my-dashboard:hover {
+        font-size: 12px;
+    }
+
+    .btn-wallet {
+        font-size: 12px;
+    }
+    .btn-wallet:hover {
+        font-size: 12px;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1329px) {
+
+    .jh-navbar {
+        max-width: 93%;
+        width: 93%;
+        min-width: 93%;
+    }
+
+    .box-container {
+        max-width: 93%;
+        width: 93%;
+        min-width: 93%;
+    }
+
+}
+
+@media only screen and (min-width: 1281px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1254px) {
+
+    .property_stats_ {
+        margin-top: 140px;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1009px) {
+    .jh-navbar {
+        width: 100%;
+    }
+    .modal-content {
+        width: 80% !important;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .modal-content {
+        width: 100% !important;
+    }
+    .cronus {
+        height: auto !important;
+        width: calc(100vw) !important;
+    }
+}

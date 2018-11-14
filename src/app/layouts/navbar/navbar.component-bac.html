@@ -1,0 +1,41 @@
+<header>
+    <!-- Header Container-->
+    <div id="header_">
+        <!-- Logo Container-->
+        <div id="logo_">
+            <!-- Logo--><a href="http://localhost:9000/#/"><img id="logo" src="img/logo.png"/></a>
+        </div>
+        <!-- Navigation Bar Container-->
+        <div id="navigation">
+            <!-- Navigation Bar-->
+            <div id="navbar">
+
+                <!--Navigation link--><a class="link" routerLink="/"><span
+                jhiTranslate="global.menu.aboutus">about us</span></a>
+                <!--Navigation link--><a class="link" routerLink="/"><span jhiTranslate="global.menu.educationcentre">educationcentre</span></a>
+                <!--Navigation link--><a class="link" routerLink="/"><span jhiTranslate="global.menu.properties">properties</span></a>
+                <!--Navigation link--><a class="link" routerLink="/"><span
+                jhiTranslate="global.menu.blog">blog</span></a>
+            </div>
+
+            <!-- Vertical Division Line-->
+            <div class="verticalhr"></div>
+            <!-- Header Button -->
+            <div class="dropshadow" id="dashboard">Interested in selling?</div>
+        </div>
+        <span class="dropshadow" id="wallet">
+            <!-- Wallet Drop Down Menu-->
+            <div class="wallet_dropdown" *ngIf="languages.length > 1">
+                <!-- Wallet Drop Down Option--><a class="wallet_dropdown_option" href="#">Some Text</a>
+                <!-- Wallet Drop Down Option--><a class="wallet_dropdown_option" href="#">Some Text</a>
+                <span *ngFor="let language of languages">
+                    <a class="link" [jhiActiveMenu]="language" href="javascript:void(0);"
+                       (click)="changeLanguage(language);">{{language | findLanguageFromKey}}</a>
+                </span>
+            </div>
+            <span id="wallet_text">
+                <span jhiTranslate="global.menu.language">Language</span></span>
+            <div id="wallet_drop"><img src="img/down.png" width="10px"/></div>
+        </span>
+    </div>
+</header>
