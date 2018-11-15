@@ -30,7 +30,8 @@
     "underscore": "^1.9.1",
     "zone.js": "~0.8.26",
     "@ng-bootstrap/ng-bootstrap": "latest",
-    "@ngx-translate/core": "latest"
+    "@ngx-translate/core": "latest",
+    "ng2-webstorage": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",

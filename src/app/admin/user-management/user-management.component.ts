@@ -34,12 +34,12 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
         private router: Router
     ) {
         // this.itemsPerPage = ITEMS_PER_PAGE;
-        this.routeData = this.activatedRoute.data.subscribe((data) => {
-            this.page = data['pagingParams'].page;
-            this.previousPage = data['pagingParams'].page;
-            this.reverse = data['pagingParams'].ascending;
-            this.predicate = data['pagingParams'].predicate;
-        });
+        // this.routeData = this.activatedRoute.data.subscribe((data) => {
+        //     this.page = data['pagingParams'].page;
+        //     this.previousPage = data['pagingParams'].page;
+        //     this.reverse = data['pagingParams'].ascending;
+        //     this.predicate = data['pagingParams'].predicate;
+        // });
     }
 
     ngOnInit() {

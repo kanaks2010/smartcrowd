@@ -1,0 +1,725 @@
+<style>
+    .errorMessage:focus {
+        border: 1px solid #f00 !important;
+    }
+
+    .disable {
+        background: #ddd !important;;
+    }
+</style>
+<div class="box-container-old">
+    <div class="reg-box">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1 jhiTranslate="register.title" class="reg-title">Create your account</h1>
+                <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
+                    <strong>Account Initiated!</strong> Please check your email for confirmation.
+                </div>
+                <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
+                    <strong>Registration failed!</strong> Please try again later.
+                </div>
+                <div class="alert alert-danger" *ngIf="errorUserExists"
+                     jhiTranslate="register.messages.error.userexists">
+                    <strong>Login name already registered!</strong> Please choose another one.
+                </div>
+                <div class="alert alert-danger" *ngIf="errorEmailExists"
+                     jhiTranslate="register.messages.error.emailexists">
+                    <strong>Email is already in use!</strong> Please choose another one.
+                </div>
+                <div class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
+                    The password and its confirmation does not match!
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <form name="editForm" role="form" novalidate (keydown)="enterPrevent($event)" (ngSubmit)="register()"
+                      #editForm="ngForm" *ngIf="!success">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="firstName"
+                                           jhiTranslate="global.form.firstName">firstName</label>
+                                    <input type="text" class="form-control" [(ngModel)]="registerAccount.firstName"
+                                           id="firstName"
+                                           name="firstName" #firstName="ngModel"
+                                           minlength="1" maxlength="50" pattern="^[ a-zA-Z-_~.]*$" required>
+                                    <div *ngIf="">
+                                        <small class="form-text text-danger"
+                                               jhiTranslate="register.messages.validate.firstName.required">
+                                            Your first name is required.
+                                        </small>
+                                    </div>
+                                    <div *ngIf="firstName.dirty && firstName.invalid">
+                                        <small class="form-text text-danger" *ngIf="firstName.errors.minlength"
+                                               jhiTranslate="register.messages.validate.firstName.minlength">
+                                            Your first name is required to be at least 1 character.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="firstName.errors.maxlength"
+                                               jhiTranslate="register.messages.validate.firstName.maxlength">
+                                            Your first name cannot be longer than 50 characters.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="firstName.errors.pattern">
+                                            First name only allow letters and some symbols (-, _, ~, .)
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="middleName"
+                                           jhiTranslate="global.form.middleName">middleName</label>
+                                    <input type="text" class="form-control" [(ngModel)]="registerAccount.middleName"
+                                           id="middleName"
+                                           name="middleName" #middleName="ngModel"
+                                           minlength="1" maxlength="50" pattern="^[ a-zA-Z-_~.]*$">
+                                    <div *ngIf="middleName.dirty && middleName.invalid">
+                                        <small class="form-text text-danger" *ngIf="middleName.errors.required"
+                                               jhiTranslate="register.messages.validate.middleName.required">
+                                            Your middle name is required.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="middleName.errors.minlength"
+                                               jhiTranslate="register.messages.validate.middleName.minlength">
+                                            Your middle name is required to be at least 1 character.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="middleName.errors.maxlength"
+                                               jhiTranslate="register.messages.validate.middleName.maxlength">
+                                            Your middle name cannot be longer than 50 characters.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="middleName.errors.pattern">
+                                            Middle name only allow letters and some symbols (-, _, ~, .)
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="lastName"
+                                           jhiTranslate="global.form.lastName">lastName</label>
+                                    <input type="text" class="form-control" [(ngModel)]="registerAccount.lastName"
+                                           id="lastName"
+                                           name="lastName" #lastName="ngModel"
+                                           minlength="1" maxlength="50" pattern="^[ a-zA-Z-_~.]*$" required>
+                                    <div *ngIf="lastName.dirty && lastName.invalid">
+                                        <small class="form-text text-danger" *ngIf="lastName.errors.required"
+                                               jhiTranslate="register.messages.validate.lastName.required">
+                                            Your last name is required.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="lastName.errors.minlength"
+                                               jhiTranslate="register.messages.validate.lastName.minlength">
+                                            Your last name is required to be at least 1 character.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="lastName.errors.maxlength"
+                                               jhiTranslate="register.messages.validate.lastName.maxlength">
+                                            Your last name cannot be longer than 50 characters.
+                                        </small>
+                                        <small class="form-text text-danger" *ngIf="lastName.errors.pattern">
+                                            Surname only allow letters and some symbols (-, _, ~, .)
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="phoneNo"
+                               jhiTranslate="global.form.phoneNo">phoneno</label>
+                        <input type="email" class="form-control" [(ngModel)]="registerAccount.phoneNo" id="phoneNo"
+                               name="phoneNo" #phoneNo="ngModel"
+                               (keyup)="phoneNumberDuplicacyCheck(registerAccount.phoneNo)"
+                               minlength="11" maxlength="50" pattern="^[_'+0-9-]*$" required>
+                        <div *ngIf="phoneNo.dirty && phoneNo.invalid">
+                            <small class="form-text text-danger" *ngIf="phoneNo.errors.required"
+                                   jhiTranslate="register.messages.validate.phoneNo.required">
+                                Your phone no is required.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="phoneNo.errors.minlength"
+                                   jhiTranslate="register.messages.validate.phoneNo.minlength">
+                                Your phone no is required to be at least 11 character.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="phoneNo.errors.pattern">
+                                Phone No only allow 0 to 9
+                            </small>
+                        </div>
+                        <div *ngIf="phoneNoDuplicate">
+                            <small class="form-text text-danger">
+                                Phone number already in use
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="email" jhiTranslate="global.form.email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" #email="ngModel"
+                               [(ngModel)]="registerAccount.email" minlength=5 maxlength=100
+                               (keyup)="emailDuplicacyCheck(registerAccount.email)"
+                               pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required>
+                        <div *ngIf="email.dirty && email.invalid">
+                            <small class="form-text text-danger" *ngIf="email.errors.required"
+                                   jhiTranslate="global.messages.validate.email.required">
+                                Your email is required.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="email.errors.minlength"
+                                   jhiTranslate="global.messages.validate.email.minlength">
+                                Your email is required to be at least 5 characters.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="email.errors.maxlength"
+                                   jhiTranslate="global.messages.validate.email.maxlength">
+                                Your email cannot be longer than 100 characters.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="email.errors.pattern">
+                                Your email is invalid.
+                            </small>
+                        </div>
+                        <div *ngIf="emailDuplicate">
+                            <small class="form-text text-danger">
+                                Email already in use
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="float:left; padding:0px; padding-right:15px;">
+                        <label class="form-control-label" for="password" jhiTranslate="global.form.newpassword">Create
+                            your password</label>
+                        <input type="password" class="form-control" id="password" name="password" #password="ngModel"
+                               [(ngModel)]="registerAccount.password" minlength=8 maxlength=50
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
+                               (input)="passwordErrorChecker(registerAccount.password);">
+                        <div *ngIf="password.dirty && password.invalid">
+                            <small class="form-text text-danger" *ngIf="password.errors.required"
+                                   jhiTranslate="global.messages.validate.newpassword.required">
+                                Your password is required.
+                            </small>
+                            <small class="form-text text-danger" *ngIf="errorMessage">
+                                {{errorMessage}}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="float:right; padding:0px;">
+                        <label class="form-control-label" for="confirmPassword"
+                               jhiTranslate="global.form.confirmpassword">New password confirmation</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                               #confirmPasswordInput="ngModel"
+                               [(ngModel)]="confirmPassword" minlength=8 maxlength=50
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               (input)="matchPass(confirmPassword)" required>
+                        <div *ngIf="confirmPasswordInput.dirty && confirmPasswordInput.invalid">
+                            <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.required"
+                                   jhiTranslate="global.messages.validate.confirmpassword.required">
+                                Your confirmation password is required.
+                            </small>
+                        </div>
+                        <div *ngIf="!notMatched">
+                            <small class="form-text text-danger">Does not match !</small>
+                        </div>
+                    </div>
+                    <div style="margin-top:0px; margin-bottom:15px; font-size:14px; color:#afafaf; width: 100%;"
+                         class="text">
+                        Password must contain at least one number, one uppercase letter and at least 8 or more
+                        characters.
+                    </div>
+                    <div style="padding:0px; margin:0px; margin-bottom: 20px;">
+                        <jhi-password-strength-bar [passwordToCheck]="registerAccount.password"
+                                                   style="padding:0px; margin:0px; margin-bottom: 20px;"></jhi-password-strength-bar>
+                    </div>
+                    <re-captcha
+                        (resolved)="resolved($event)"
+                        siteKey="6LcgT0MUAAAAALy1E0mJSKQoGNSLvGXYV0FlBW_Z"
+                    ></re-captcha>
+                    <div class="form-group">
+                        <label>Prove you are not robot</label>
+                        <input type="text" class="form-control" name="mainCaptcha" id="mainCaptcha"
+                               #mainCaptchaInput="ngModel"
+                               [(ngModel)]="mainCaptcha" readonly disabled/>
+                        <input style="width:100%; margin-top:9px;" type="button" id="refresh" value="Refresh"
+                               (click)="captchaInit();"/>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span>Please Enter Captcha</span>
+                            <span style="color: red">*</span>
+                        </label>
+                        <input type="email" class="form-control" name="txtInput" id="txtInput"
+                               #matchCaptchaInput="ngModel"
+                               [(ngModel)]="matchCaptcha" required/>
+                    </div>
+                    <hr/>
+                    <div class="alert alert-primary">
+                        <span style="float:left; margin-bottom:20px;">Please review our <span
+                            (click)="enableTermsNCondition()" class="tnc_hover">Terms and Conditions </span>in order to sign up.</span>
+                    </div>
+                    <div class="col-md-12 tsc_reg_com" style="margin-top:11px;"
+                         [hidden]="!viewTermsnCondition">
+                        <h5 style="color:#d24242; text-align: center; margin-bottom:18px;padding-top: 25px; font-size: 16px;">
+                            Please scroll to the
+                            bottom to agree and accept the terms & condition</h5>
+                        <div class="tsc_reg_com_text">
+                            <h3 style="text-align: right; font-size: 12px;margin-bottom: 25px;">Updated: September
+                                30<sup>th</sup>, 2018</h3>
+                            <p><strong>Smart Crowd Limited Website Acceptable Use Policy</strong></p>
+                            <p>This acceptable user policy sets out the terms between you and us under which you may access
+                                our website Smart Crowd Ltd (our <strong>site</strong>). This acceptable user policy
+                                applies to all users of, and visitors to, our site.</p>
+                            <p>Your use of our site means that you accept, and agree to abide by, all the policies in
+                                this acceptable user policy, which supplement our terms of website use</p>
+                            <p>The website [<a href="http://www.smartcrowd.ae/"
+                                               target="_blank">www.smartcrowd.property</a> &amp; <a
+                                href="http://www.smartcrowd.ae/" target="_blank">www.smartcrowd.ae</a>] (the <strong>Website</strong>)
+                                is a site operated by Smart Crowd Limited (<strong>we</strong> or <strong>us</strong>),
+                                a company incorporated in the Dubai Financial Centre (<strong>DIFC</strong>), under the
+                                license number CL2704 based at the Fintech Hive at DIFC, Level 4, Precinct Gate 5, DIFC,
+                                Dubai, UAE. Smart Crowd is authorized and regulated by Dubai Financial Services
+                                Authority (DFSA) for the purpose of Operating a Crowdfunding Platform under the DFSA
+                                registration numbers F004285.</p>
+                            <p>Please read these Terms carefully before using the Website. By continuing to use the
+                                Website, you agree to be bound by these terms and conditions and the following
+                                policies:</p>
+                            <ol>
+                                <li style="margin-top:10px; font-size:14px;">Smart Crowd Cookie Policy available in the
+                                    footer of our website
+                                </li>
+                                <li style="margin-top:10px; font-size:14px;">Smart Crowd Privacy Policy available in the
+                                    footer of our website
+                                </li>
+                            </ol>
+                            <p lang="en-US">If you do not agree with these Terms, you should immediately stop using this
+                                Website. We reserve the right to modify or amend these Terms, the Website or any content
+                                on the Website from time to time, including for security, legal or regulatory reasons,
+                                or to reflect updates or changes to the services or functionality of the Website.</p>
+                            <p lang="en-US">You are advised to check these Terms periodically to ensure that you are
+                                aware of and are complying with the current version. Changes are binding on users of the
+                                Website and will take effect immediately from posting of the revised documentation on
+                                the Website. You agree to be bound by such variation and your continued use of this
+                                Website shall constitute your acceptance of such variation.</p>
+                            <p lang="en-US">We will indicate on the Website that the Terms have changed. You accept that
+                                by doing so, we have provided you with sufficient notice of such change.</p>
+                            <p lang="en-US">If you elect to become a seller or investor with Smart Crowd, you must
+                                comply with our Seller Terms or Investor Terms, as applicable. These Terms should be
+                                read alongside, and shall apply in addition to our Seller Terms or our Investor Terms
+                                (all made available during our registration process).</p>
+                            <p lang="en-US"><strong>1. PROHIBITED </strong><strong>USES</strong></p>
+
+                            <p><strong>1.1 You may </strong><strong>use</strong><strong> our site only for lawful
+                                purposes. You may not </strong><strong>use</strong><strong> our site</strong>:</p>
+
+                            <ul style="padding:2px;">
+                                <li style="list-style:none; margin-top:2px; font-size:14px;">
+                                    <p>1.1.1 in any way that breaches any applicable local, national or international
+                                        law or regulation;</p>
+                                    <p>1.1.2 in any way that is unlawful or fraudulent, or has any unlawful or
+                                        fraudulent purpose or effect;</p>
+                                    <p>1.1.3 for the purpose of harming or attempting to harm minors in any way;</p>
+                                    <p>1.1.4 to send, knowingly receive, upload, download, use or re-use any material
+                                        which does not comply with our content standards as set out below;</p>
+                                    <p>1.1.5 to transmit, or procure the sending of, any unsolicited or unauthrised
+                                        advertising or promotional material or any other form of similar solicitation
+                                        (spam); o</p>
+                                    <p>1.1.6 to knowingly transmit any data, send or upload any material that contains
+                                        viruses, Trojan horses, worms, time-bombs, keystroke loggers, spyware, adware or
+                                        any other harmful programs or similar computer code designed to adversely affect
+                                        the operation of any computer software or hardware;</p>
+                                    <p>1.1.7 Use the Website in any manner that could, or could reasonably be expected
+                                        to, damage or overburden any of our servers, or any network connected to any of
+                                        our servers;</p>
+                                    <p>1.1.8 Use the Website in any manner that would, or could reasonably be expected
+                                        to, interfere with any other party&rsquo;s use of the Website or which is, or
+                                        which is likely to be, in contravention of any applicable laws or any party&rsquo;s
+                                        rights or legal entitlements under any applicable laws;</p>
+                                    <p>1.1.9 Use any robot, spider, screen scraper, data aggregation tool or other
+                                        automatic device, routine or process (Automated Process) to process, monitor,
+                                        copy or extract any web pages on the Website, or any of the information, content
+                                        or data contained within or accessible through the Website, without our prior
+                                        written permission;</p>
+                                    <p>1.1.10 Use any Automated Process to aggregate or combine information, content or
+                                        data contained within or accessible through the Website with information,
+                                        content or data accessible via or sourced from any third party;</p>
+                                    <p>1.1.11 Use any Automated Process to interfere or attempt to interfere with the
+                                        proper working of the Website or any transaction or process being conducted on
+                                        or through the Webiste;</p>
+                                    <p>1.1.12 Post upload to, transmit, distribute, store, create or otherwise publish
+                                        or make available through the Website any content that is false, misleading,
+                                        erroneous, fraudulent or is otherwise likely to cause confusion to users of the
+                                        Website or content which is unlawful, libelous, defamatory, offensive to any
+                                        religious or moral groups, obscene, pornographic, indecent, lewd, suggestive,
+                                        harassing, threatening, invasive of privacy or publicity rights, abusive,
+                                        inflammatory, or otherwise objectionable;</p>
+                                    <p>1.1.13 Take any action that imposes an unreasonable or disproportionately large
+                                        load on the infrastructure of or bandwidth connecting to the Website;</p>
+                                    <p>1.1.14 Attempt to gain unauthorised access to the Website, the server on which
+                                        the Website is stored or any server, computer or database connected to the
+                                        Website;</p>
+                                    <p>1.1.15 Attempt to attack the Website via a denial-of-service attack or a
+                                        distributed denial-of-service attack;</p>
+                                    <p>1.1.16 Reverse engineer, reverse assemble, decompile, or otherwise attempt to
+                                        discover source code or other arithmetical formula or processes in respect of
+                                        the software underlying the infrastructure and processes associated with the
+                                        Website; or</p>
+                                    <p>1.1.17 Copy, reproduce, alter, modify, create derivative works from, or publicly
+                                        display, any part of any content from the Website without our prior written
+                                        permission.</p>
+                                </li>
+                            </ul>
+                            <p>1.2 We may, in our absolute discretion, remove, screen or edit without notice any content
+                                posted or stored on the Website at any time and for any reason, and you are solely
+                                responsible for creating backup copies of and replacing any content you require or that
+                                you post or store on the Website at your sole cost and expense.</p>
+                            <p>1.3 Your use of the Website in violation of these Terms may result in, among other
+                                things, termination or suspension of your rights to use the Website and we may, in our
+                                sole discretion, report a breach of any such obligation which is also a breach of the
+                                applicable law to the relevant law enforcement authorities and will co-operate with
+                                those authorities by disclosing your identity to them. In the event of such a breach,
+                                your right to use the Website will cease immediately.</p>
+
+                            <p><strong>2. CONTENT STANDARDS</strong>&nbsp;</p>
+                            <p>2.1 These content standards apply to all material which you contribute to our site
+                                (<strong>contributions</strong>), and to any interactive services associated with it.
+                            </p>
+                            <p>2.2 You must comply with the spirit and the letter of the following standards. The
+                                standards apply to each part of any contribution as well as to its whole.</p>
+                            <p>2.3 Contributions must:</p>
+                            <ul style="padding:2px;">
+                                <li style="list-style:none; margin-top:2px; font-size:14px;">
+                                    <p>2.3.1 be accurate (where they state facts);</p>
+                                    <p>2.3.2 be genuinely held (where they state opinions); and</p>
+                                    <p>2.3.3 comply with applicable law in any country from which they are posted</p>
+                                </li>
+                            </ul>
+                            <p>2.4 Contributions must not:</p>
+                            <ul style="padding:2px;">
+                                <li style="list-style:none; margin-top:2px; font-size:14px;">
+                                    <p>2.4.1 contain any material which is defamatory of any person;</p>
+                                    <p>2.4.2 contain any material which is obscene, offensive, hateful or
+                                        inflammatory;</p>
+                                    <p>2.4.3 promote sexually explicit material;</p>
+                                    <p>2.4.4 promote violence;</p>
+                                    <p>2.4.5 promote discrimination based on race, sex, religion, nationality,
+                                        disability, sexual orientation or age;</p>
+                                    <p>2.4.6 infringe any copyright, database right or trade mark of any other
+                                        person;</p>
+                                    <p>2.4.7 be likely to deceive any person;</p>
+                                    <p>2.4.8 be made in breach of any legal duty owed to a third party, such as a
+                                        contractual duty or a duty of confidence;</p>
+                                    <p>2.4.9 promote any illegal activity;</p>
+                                    <p>2.4.10 be threatening, abuse or invade another&rsquo;s privacy, or cause
+                                        annoyance, inconvenience or needless anxiety;</p>
+                                    <p>2.4.11 be likely to harass, upset, embarrass, alarm or annoy any other
+                                        person;</p>
+                                    <p>2.4.12 be used to impersonate any person, or to misrepresent your identity or
+                                        affiliation with any person;</p>
+                                    <p>2.4.13 give the impression that they emanate from us, if this is not the case;
+                                        oradvocate, promote or assist any unlawful act such as (by way of example only)
+                                        copyright infringement or computer misuse.</p>
+                                </li>
+                            </ul>
+                            <h6><strong>3. DISCLAIMER AND RISK WARNING </strong></h6>
+                            <p>3.1 The Website is a marketplace that allows you to invest directly in a property
+                                provided by third parties. As a marketplace, we do not own or sell the properties or
+                                investment opportunities which are displayed on the Website.</p>
+                            <p>3.2 You acknowledge and agree that no content published on the Website constitutes a
+                                recommendation that any particular investment, portfolio of investments, transaction, or
+                                investment strategy is suitable or advisable for you or any other specific person. You
+                                further understand that neither we nor any of the information providers, their
+                                affiliates nor any third parties will advise you personally concerning the nature,
+                                potential, advisability, value or suitability of any particular investment, portfolio of
+                                investments, transaction, investment strategy, or other matter.</p>
+                            <p>3.3 The content and material available on the Website is for informational purposes only
+                                and is not intended to address your particular requirements. In particular, the content
+                                and material available on the Website does not constitute any form of advice or
+                                recommendation by us, should not be regarded as an offer, solicitation, invitation or
+                                recommendation to buy or sell investments, securities or any other financial services
+                                and is not intended to be relied upon by you in making (or refraining from making) any
+                                specific investment or other decisions. We recommend that you seek independent advice
+                                from a financial advisor before making any such decision.</p>
+                            <p>3.4 The value of investments and the income derived from them can fluctuate, and you may
+                                not necessarily recover the amount you invested. Past performance of an investment is
+                                not necessarily a guide to its future performance. It may be difficult for you to sell
+                                or value certain investments or to obtain reliable information about their value or the
+                                extent of the risks to which they are exposed.</p>
+                            <p>3.5 You acknowledge and agree that prices, descriptions and other financial data made
+                                available on the Website is compiled from third party sources believed to be reliable,
+                                and where possible such data is verified by us as far as is commercially possible.
+                                Notwithstanding this, you acknowledge and agree that the calculations, profiles and data
+                                available on the Website are made using such third-party data, and that neither such
+                                data nor such calculations are guaranteed by these sources, by us, nor by the
+                                information providers or any other person or entity and may not be complete or
+                                accurate.</p>
+                            <p>3.6 You acknowledge and agree that returns advertised by us on the Website are indicative
+                                only and are subject to economic, business factors and other factors outside of our
+                                control and we do not guarantee that the returns advertised will be available to you at
+                                any point in time.</p>
+                            <p>3.7 Nothing included in the Website constitutes an offer or solicitation to sell, or
+                                distribution of, investments and related services to anyone in any jurisdiction.</p>
+                            <p>3.8 From time to time, reference may be made on our Website to prior investments or data
+                                we have published. These references may be selective or, may be partial. As markets
+                                change continuously, previously published information and data may not be current and
+                                should not be relied upon.&nbsp;</p>
+                            <h6><strong>4. DISCLAIMERS OF WARRANTIES</strong></h6>
+                            <p>4.1 The Website is provided &ldquo;as is,&rdquo; without any express or implied
+                                warranties of any kind. We and our affiliates, agents, and licensors cannot and do not
+                                warrant the accuracy, reliability, quality or completeness of the information provided
+                                on the Website nor that the services provided via the Website will be timely,
+                                non-infringing, of merchantable quality or fit for a particular purpose, and we hereby
+                                disclaim any and all such express or implied warranties, except those that cannot be
+                                lawfully excluded.&nbsp;</p>
+                            <p>4.2 Although we make every effort to ensure that the services offered on the Website are
+                                available consistently, the nature of the Internet means that we cannot guarantee the
+                                Website&rsquo;s availability. We do not warrant that the provision of the Website or any
+                                part of it will be available, uninterrupted or error free, that defects in the Website
+                                will be corrected, or that the Website will be free of viruses or other harmful
+                                components. We will not be liable for any loss, damage, expense, costs, delays or other
+                                liability whatsoever (including without limitation any financial losses) which you may
+                                incur as a result of using the Website, or as a result of the Website or any part of it
+                                being unavailable at any time for whatever&nbsp;reason.&nbsp;</p>
+                            <p><span lang="en-US"> 4.3 You&nbsp;are solely responsible for obtaining telecommunications access to the Website and for any fees (such as internet service provider or airtime charges) relating to such access. Similarly, you are solely responsible for all equipment necessary for you to access this Website and for implementing and maintaining antivirus software on your&nbsp;computer.</span>
+                            </p>
+                            <p>4.4 Information transmitted via the Website will pass over public telecommunications
+                                networks. We accept no liability if communications sent via the Website are intercepted
+                                by third parties, delayed or incorrectly delivered or not&nbsp;delivered.&nbsp;</p>
+                            <h6><strong>5. MENAS OF ACCESS</strong></h6>
+                            <p>5.1 The Website is generally intended to be viewed by a conventional web browser with a
+                                screen resolution of 1024 by 768 pixels or greater. Although you may use other means to
+                                access the Website, be aware that the Website may not appear accurately through other
+                                access&nbsp;methods.</p>
+                            <p>5.2 You must not access the Website through devices or services that are designed to
+                                provide high-speed, automated, repeated access.&nbsp;</p>
+                            <p>5.3 Certain parts of the Website are protected by passwords or require a login. You must
+                                not obtain or attempt to obtain unauthorised access to such parts of the Website, or to
+                                any other protected materials or information, through any means not intentionally made
+                                available by us for your specific use.&nbsp;</p>
+                            <h6><strong>6. ELIGIBILTY AND REGISTRATION </strong></h6>
+                            <p>6.1 In order to access the Website, you must be a minimum of twenty-one (21) years old
+                                (measured according to the Gregorian calendar) and have full legal capacity. You
+                                warrant, represent and undertake that you possess the legal right and experience,
+                                knowledge and ability to access and use the Website in accordance with these Terms.</p>
+                            <p>6.2 In order to access our services and certain restricted parts of the Website you are
+                                required to register as either an investor or seller. Please note that an application to
+                                register as both an investor and a business may be rejected.</p>
+                            <p>6.3 In order to become an investor or seller you will be required to follow a
+                                registration process. Firstly, you will be required to submit some basic details about
+                                yourself (including your name and email address) and shall be prompted to choose a
+                                unique user name and password, and may be asked to provide answers to certain security
+                                questions. These are the methods used by us to identify you and so you must keep them
+                                secure at all times.</p>
+                            <p>6.4 You will then be required at this point to submit detailed information about either
+                                yourself or the property you wish to sell, as applicable. We will also require you to
+                                provide proof of identity and proof of your current address, (or that of the relevant
+                                business&rsquo; directors, partners or representatives as appropriate) in order to
+                                comply with our anti-money laundering obligations. Applications to become seller and
+                                investors on Website will be subject to an approval process and may be accepted or
+                                rejected by Smart Crowd in its sole discretion.</p>
+                            <p>6.5 You warrant, represent and undertake that the information you provide about yourself
+                                during the registration process is accurate, current and complete.</p>
+                            <h6><strong>7. YOUR LOGIN DETAILS</strong></h6>
+                            <p>7.1 Each&nbsp;time you log in to the Website you will need to enter your email address
+                                and password and you may be required to answer one or more security questions. Your
+                                username and password are unique to you and are not transferable.&nbsp;</p>
+                            <p>7.2 You are responsible for all information and activity on the Website by anyone using
+                                your username and password. Accordingly, you must take steps to protect the
+                                confidentiality of your user name and password and you must notify us immediately if you
+                                become aware of any disclosure, loss, theft or unauthorised use of the same.
+                                Notwithstanding the above, you:</p>
+                            <ul style="padding:2px;">
+                                <li style="list-style:none; margin-top:2px; font-size:14px;">
+                                    <p>7.2.1 May not transfer or resell your user name or password to any third party;
+                                        and</p>
+                                    <p>7.2.2 Agree to notify us at Info@smartcrowd.ae if you become aware of any
+                                        possible unauthorised use(s) of your user name or password or any possible
+                                        breach of security, including loss, theft, or unauthorised disclosure of your
+                                        user name or password.&nbsp;</p>
+                                </li>
+                            </ul>
+                            <p>7.3 If you authorise an employee, sub-contractor or agent to use your login details you
+                                will be responsible for their activity on the Website. We reserve the right not to act
+                                on your instructions where we suspect that the person logged into your Smart Crowd
+                                Account is not you or we suspect illegal or fraudulent activity or unauthorized use.</p>
+                            <h6><strong>8. LINKS TO AND FROM OTHER SITES</strong></h6>
+                            <p>8.1 You may, through hypertext or other computer links, gain access from the Website to
+                                websites operated by persons other than us. Such hyperlinks are provided for your
+                                reference and convenience only, and are the exclusive responsibility of such website&rsquo;s
+                                owners or operators. You acknowledge and agree that we are not responsible for the
+                                content or operation of such websites, and that we do not make any representations or
+                                warranties in relation to such websites, including without limitation that the content
+                                of such websites does not infringe the rights of any third parties or any applicable
+                                law.&nbsp;</p>
+                            <p>8.2 A&nbsp;link from this Website to another website does not mean that we endorse or
+                                approve the content on that website or the operator or operations of that website. You
+                                are solely responsible for determining the extent to which you may use or rely upon any
+                                content at any other websites which you access from this Website. We have no control
+                                over the contents of those sites or resources, and accept no responsibility for them or
+                                for any loss or damage that may arise from your use of them.</p>
+                            <p>8.3 Our Website must not be framed on any other site, nor may you create a link to any
+                                part of our Website. We reserve the right to withdraw linking permission without
+                                notice.</p>
+                            <p>8.4 We assume no responsibility for the use of, or inability to use, any third party
+                                software or other materials on the Website and shall have no liability whatsoever to any
+                                person or entity for their use of, or inability to use, any such third party software or
+                                materials.</p>
+                            <h6><strong>9. LIMITATION OF LIABILITY AND INDEMNTIY</strong></h6>
+                            <p>9.1 You use the Website entirely at your own risk. Neither we nor any of our affiliates,
+                                agents, officers, employees, suppliers or licensors (Smart Crowd Parties) will be liable
+                                to you or anyone else for any:</p>
+                            <ul style="padding:2px;">
+                                <li style="list-style:none; margin-top:2px; font-size:14px;">
+                                    <p>9.1.1 inaccuracy, delay, interruption in service, error or omission, regardless
+                                        of cause or for any damages as a result;</p>
+                                    <p>9.1.2 decision made or action taken or not taken by you in reliance on the
+                                        Website or its content;</p>
+                                    <p>9.1.3 damages, including, without limitation, any direct, indirect, incidental,
+                                        consequential, special, punitive, exemplary or similar damages, regardless of
+                                        the theory of liability and even if advised of the possibility of such damages
+                                        in advance;</p>
+                                    <p>9.1.4 loss or injury resulting from use of the content or the Website, in whole
+                                        or part, whether caused by negligence or contingencies beyond its control in
+                                        procuring, compiling, interpreting, reporting or delivering the Website and its
+                                        content or otherwise;</p>
+                                    <p>9.1.5 losses, damages, liabilities, claims or expenses (including without
+                                        limitation to legal costs and defense or settlement costs) whatsoever, whether
+                                        direct, indirect or consequential, arising out of or referable to your use of
+                                        the Website or its content, use of Smart Crowd howsoever caused, whether in
+                                        contract, tort (including negligence), statute or otherwise; or</p>
+                                    <p>9.1.6 loss resulting from a cause over which we do not have control.</p>
+                                </li>
+                            </ul>
+                            <p>9.2 Our total liability to you in connection with these Terms, and any other terms you
+                                may subscribe to in connection with your use of the Website, shall not exceed AED
+                                10,000.</p>
+                            <p>9.3 All exclusion and limitations of liability set out in these Terms shall apply to the
+                                fullest extent permissible under the applicable law.</p>
+                            <p>9.4 You shall indemnify us in full in respect of any liability incurred by us for any
+                                loss, cost, damage, or expense howsoever caused, or suffered by us as a result of your
+                                breach of these Terms. Where you use the Site inappropriately or maliciously, you agree
+                                that you will indemnify us against any losses suffered by us or any third parties as a
+                                result of or in connection with such use.</p>
+                            <h6><strong>10. AVAILABILITY OF THE SITE</strong></h6>
+                            <p>10.1 As electronic services are subject to interruption or breakdown, access to the
+                                Website is offered on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis
+                                only.</p>
+                            <p>10.2&nbsp;We reserve the right to limit the availability of the Website to any person,
+                                geographic area or jurisdiction we so desire and/or to terminate your access to and use
+                                of the Site, at any time and in our sole discretion.</p>
+                            <p><span lang="en-US">10.3&nbsp;We may, at our sole discretion, impose limits or restrictions on the use you may make of the Website. Further, for commercial, security, technical, maintenance, legal or regulatory reasons, or due to any breach of these Terms, we may withdraw the Website or your access to the Website, or suspend such access, at any time and without notice to you.</span>&nbsp;
+                            </p>
+                            <h6><strong>11. INTELECTUAL PROPERTY RIGHTS</strong></h6>
+                            <p lang="en-US">11.1 All remarks, suggestions, ideas, materials or other information
+                                provided by you through this Website will forever be our property. You acknowledge that
+                                you are responsible for any submissions provided through your user name or password, and
+                                you, not us, have full responsibility for such submissions, including their accuracy,
+                                legality, reliability, appropriateness, originality and copyright. Notwithstanding the
+                                foregoing, we have the right to refuse to post, remove, edit or abridge any submission
+                                for any reason and to disclose any submission as we deem necessary, including without
+                                limitation to achieve compliance with any applicable law, regulation, legal process or
+                                governmental request, all in our sole discretion.&nbsp;</p>
+                            <p lang="en-US">11.2 We own all present and future copyright, registered and unregistered
+                                trademarks, design rights, unregistered designs, database rights and all other present
+                                and future intellectual property rights and rights in the nature of intellectual
+                                property rights existing in or in relation to the Website.</p>
+                            <p lang="en-US">11.3 If and to the extent that any such intellectual property rights vest in
+                                you by operation of law or otherwise, you agree to do any and all such acts and execute
+                                any and all such documents, now or in the future, as we may reasonably request in order
+                                to assign such intellectual property rights back to us.</p>
+                            <p lang="en-US">11.4 You shall retain ownership of all copyright in data you upload or
+                                submit to the Website. You grant us a world-wide, perpetual, exclusive, royalty-free,
+                                non-terminable license to use, copy, distribute, publish and transmit such data in any
+                                manner.</p>
+                            <p lang="en-US">11.5 We do not warrant or represent that the content of the Website does not
+                                infringe the rights of any third party.</p>
+                            <h6><strong>12. COPYRIGHTS AND TRADE MARKS</strong></h6>
+                            <p>12.1 The Website and its content are our property or the property of our licensors and
+                                are protected by copyright, trade mark, patent and other applicable laws.</p>
+                            <p>12.2 You are permitted to download and print content from this Website solely for your
+                                own personal use or in the course of your business to the extent required to use the
+                                services provided on this Website. Website content must not be copied or reproduced,
+                                modified, redistributed, used or otherwise dealt with for any other reason without our
+                                express written consent.</p>
+                            <p>12.3 Except where necessary for and incidental to personally viewing the Website through
+                                your web browser, or as permitted by these Terms, no part of the Website may be
+                                reproduced, stored (for any period of time) in an electronic or any other retrieval
+                                system, modified, adapted, uploaded to a third party location, framed, performed in
+                                public, or transmitted, in any form by any process whatsoever, without our specific
+                                prior written consent.</p>
+                            <h6><strong>13. CONFIDENTIALITY</strong></h6>
+                            <p>13.1 You <span lang="en-US">undertake that you shall not at any time after you have been provided a unique user name by us, divulge or communicate to any person (except to professional representatives or advisers or as may be required by law or any legal or regulatory authority) any Confidential Information, and will use best endeavours to prevent the unauthorised publication or disclosure of any Confidential Information, and will only use such Confidential Information for the purposes of proposing, considering or making transactions through the Website. Confidential Information for these purposes of this clause shall include all information in whatever form (including in visual, oral or electronic form) relating to us or any investor or seller (including all investor or business profiles) or an individual or a company that was previously an investor or a seller, which is provided or disclosed through the Website (or to any employees or agents) in connection with the use of the Website.</span>
+                            </p>
+                            <p><strong>14. SUSPENSION AND TERMINATION</strong>&nbsp;</p>
+                            <p>14.1 We will determine, in our discretion, whether there has been a breach of this
+                                acceptableusepolicy through your use of our site. When a breach of this policy has
+                                occurred, we may take such action as we deem appropriate.</p>
+                            <p>14.2 We may terminate either or both of your log-in details and your access to the
+                                Website for any or no reason, at any time, with or without notice to you and without
+                                incurring any liability to you, however that liability may arise.</p>
+                            <p>14.3 We exclude liability for actions taken in response to breaches of this
+                                acceptableusepolicy. The responses described in this policy are not limited, and we may
+                                take any other action we reasonably deem appropriate.</p>
+                            <p>14.4&nbsp;All restrictions and all disclaimers and exclusions and limitations of our
+                                liability will continue to apply during suspension and will survive any termination.
+                                Upon suspension or termination, you must not directly or indirectly access or use the
+                                Website.&nbsp;</p>
+                            <h6 lang="en-US"><strong>15. GENERAL TERMS</strong></h6>
+                            <p>15.1 If we fail to insist on your strict performance of these terms and conditions or if
+                                we fail to exercise any of our rights or remedies to which we are entitled under these
+                                terms and conditions, or any other document referred to herein, this will not amount to
+                                a waiver of such rights or remedies nor will it relieve you of your obligations under
+                                these terms and conditions.</p>
+                            <p>15.2 No full or partial waiver of any such right or remedy shall restrict us from
+                                exercising that right or remedy, or any other right or remedy, in the future.</p>
+                            <p>15.3 If any of these terms and conditions or any provisions of any other document
+                                featured as part of your relationship with us are determined by a competent authority to
+                                be invalid, unlawful or unenforceable, to any extent, then such term or condition will
+                                be severed from the remaining terms and conditions which will continue to be valid, as
+                                far as permitted by DIFC law.&nbsp;</p>
+                            <p>15.4 Nothing in this Agreement is intended to or will be used to establish any
+                                partnership or joint venture between the parties, nor authorise any party to make any
+                                commitments for or on behalf of any other party.</p>
+                            <p>15.5 You should take your own tax advice. No warranty or representation is made in
+                                relation to your tax position, which will apply to you following the making of any
+                                investment.</p>
+                            <p>15.6 Any notice or other communication given to either party in connection with this
+                                contract shall be in writing and delivered by hand or sent by pre-paid first class post
+                                (or an equivalent next day delivery service) at its registered address (if a company) or
+                                its principal place of business or residential address (if an individual), or sent by
+                                e-mail to the e-mail address notified to the other party in accordance with this
+                                contract. Our e-mail address for the service of notices is info@smartcrowd.ae. Any
+                                notice or other communication will be deemed to have been received if delivered by hand,
+                                on signature of delivery receipt or at the time the notice is left at the proper
+                                address, or if sent by e-mail, at 9.00 am on the next working day after it is sent or if
+                                sent by post (or other delivery service) on the second working day after
+                                posting.&nbsp;</p>
+                            <p>15.7 All correspondence and communication between you and us will be in the English
+                                language.</p>
+                            <p>15.8 Any dispute or claim arising out of or in connection with the Website, its subject
+                                matter or formation will be governed by DIFC law and such disputes or claims will be
+                                subject to the non-exclusive jurisdiction of the DIFC Courts.&nbsp;</p>
+                            <p>15.9 These terms and conditions and any document expressly referred to in them constitute
+                                the whole agreement between us and supersedes all previous discussions, correspondence,
+                                negotiations or agreement relating to this subject matter.</p>
+                            <p><strong>16. CHANGES TO
+                                THE </strong><strong>ACCEPTABLE</strong><strong>USE</strong><strong>POLICY</strong></p>
+                            <p>16.1 We may revise this acceptableusepolicy at any time by amending this page. You are
+                                expected to check this page from time to time to take notice of any changes we make, as
+                                they are legally binding on you. Some of the provisions contained in this
+                                acceptableusepolicy may also be superseded by provisions or notices published elsewhere
+                                on our site.</p>
+                            <p><strong>17. CONTACTING US</strong></p>
+                            <p>17.1 Should you have any questions about these Terms, or wish to contact us for any
+                                reason whatsoever, please contact us on <a
+                                    href="http://www.smartcrowd.ae/contact/">www.smartcrowd.ae/contact/</a>.</p>
+
+
+                            <span class="form-group" style="color:black;">
+                        <input type="checkbox" style="width:15px; height:15px; margin-top:21px;" class="" id="iAgree"
+                               name="iAgree" #iAgreeInput="ngModel" [(ngModel)]="iAgree" (click)="enableIagree()"
+                               required/>
+                    &nbsp;I Agree</span>
+                        </div>
+                    </div>
+                    <button type="button" (click)="openLogin()" class="btn btn-primary alr-btn">Already have an
+                        account
+                    </button>
+                    <button type="submit" [ngClass]="{'disable': editForm.form.invalid || !notMatched}"
+                            [disabled]="editForm.form.invalid || isSaving || emailDuplicate || phoneNoDuplicate || !notMatched "
+                            *ngIf="iAgree" class="btn btn-primary reg-btn">Create account
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

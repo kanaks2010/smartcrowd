@@ -28,7 +28,14 @@ const ADMIN_ROUTES = [
 ];
 
 export const adminState: Routes = [
-  {path: 'user-management', component: UserMgmtComponent}
+  {
+    path: 'user-management',
+    component: UserMgmtComponent,
+    data: {
+      authorities: [],
+      pageTitle: 'Admin'
+    }
+  }
 ];
 /*
 export const subAdminState: Routes = [{

@@ -15,6 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {PageRibbonComponent} from './layouts/profiles/page-ribbon.component';
 import {SidebarComponent} from './layouts/sidebar/sidebar.component';
 import {AdminModule} from './admin/admin.module';
+import {AccountModule} from './account/account.module';
+import {LeftmenuModule} from '../leftmenu/leftmenu.module';
 @NgModule({
   declarations: [
     AppComponent, FooterComponent, MainComponent, NavbarComponent,
@@ -29,7 +31,9 @@ import {AdminModule} from './admin/admin.module';
     FormsModule,
     HomeModule,
     NgbModule,
-    AdminModule
+    AdminModule,
+    AccountModule,
+    LeftmenuModule
   ],
   providers: [],
   bootstrap: [MainComponent]
