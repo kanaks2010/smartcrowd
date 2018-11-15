@@ -1,0 +1,192 @@
+<div class="">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>
+                <a [routerLink]="['/admin-dashboard']" routerLinkActive="true">
+                    <i class="fa fa-fw fa-home" aria-hidden="true"></i>Dashboard
+                </a>
+            </h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Investor
+                    Registration</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li><a [routerLink]="['/investor-registration']" routerLinkActive="true">Investor Registration</a>
+                    </li>
+                    <li><a routerLink="/investor-shareholding" routerLinkActive="true">Investor Shareholding</a>
+                    </li>
+                    <li><a routerLink="/investor-list-with-investment" routerLinkActive="true">All Investor
+                        Investment
+                        List</a></li>
+                    <li><a routerLink="/investor-registration-user-list-sign-up-status" routerLinkActive="true">Investor
+                        User Registration
+                        Status</a></li>
+                    <li><a routerLink="/registration-settings" routerLinkActive="true">Registration Settings</a>
+                    </li>
+                    <li><a routerLink="/origin-of-the-funds" routerLinkActive="true">Origin Of The Funds</a></li>
+                    <li><a routerLink="/proof-of-id" routerLinkActive="true">Proof Of Id</a></li>
+                    <li><a routerLink="/proof-of-residence" routerLinkActive="true">Proof Of Residence</a></li>
+                    <li><a routerLink="/industry-rating" routerLinkActive="true">Industry Rating</a></li>
+                    <li><a routerLink="/investor-types" routerLinkActive="true">Investor Types</a></li>
+                    <!--<li><a routerLink="/investor-address" routerLinkActive="true">Investor Address</a></li>-->
+                    <li><a routerLink="/currency" routerLinkActive="true">Currency</a></li>
+                    <li><a routerLink="/id-verification" routerLinkActive="true">Id Verification</a></li>
+                    <li><a routerLink="/net-assets" routerLinkActive="true">Net Assets</a></li>
+                    <li><a routerLink="/occupation" routerLinkActive="true">Occupation</a></li>
+                    <!--<li><a routerLink="/investor-income" routerLinkActive="true">Investor Income</a></li>-->
+                    <!--<li><a routerLink="/annual-income" routerLinkActive="true">Annual Income</a></li>-->
+                    <li><a routerLink="/investor-annual-salary" routerLinkActive="true">Investor Annual Salary</a>
+                    </li>
+                    <li><a routerLink="/investor-intentto-invest" routerLinkActive="true">Investor Intentto
+                        Invest</a></li>
+                    <li><a routerLink="/investor-sourceof-wealth" routerLinkActive="true">Investor Source of
+                        Wealth</a></li>
+                    <li><a routerLink="/aml-result" routerLinkActive="true">AML Result</a></li>
+                    <li><a routerLink="/investor-registration-comments" routerLinkActive="true">Investor
+                        Registration Comments</a></li>
+                    <li><a routerLink="/employment-status" routerLinkActive="true">Employment Status</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#votingModule" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Voting
+                    Module</a>
+                <ul class="collapse list-unstyled" id="votingModule">
+                    <li><a routerLink="/sc-vote-master" routerLinkActive="true">Vote Master</a></li>
+                    <li><a routerLink="/sc-property-vote" routerLinkActive="true">Property Vote</a></li>
+                    <li><a routerLink="/sc-property-vote-dashboard" routerLinkActive="true">Property Vote
+                        Dashboard</a></li>
+                    <li><a routerLink="/sc-legal-documents" routerLinkActive="true">Sc Legal Documents</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#propertyModule" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Property</a>
+                <ul class="collapse list-unstyled" id="propertyModule">
+                    <li><a routerLink="/property" routerLinkActive="true">Property</a></li>
+                    <li><a routerLink="/property-shareholding" routerLinkActive="true">Property Shareholding</a>
+                    </li>
+                    <li><a routerLink="/generic-documentation-admin" routerLinkActive="true">Generic Documents</a></li>
+                    <!--<li><a routerLink="/property-browse" routerLinkActive="true">Property Browse</a></li>-->
+                    <li><a routerLink="/property-market-price-update" routerLinkActive="true">Property Market Price
+                        Update</a></li>
+                    <li><a routerLink="/property-category" routerLinkActive="true">Property Building Type</a></li>
+                    <li><a routerLink="/property-type" routerLinkActive="true">Property Category</a></li>
+                    <li><a routerLink="/area-configuration" routerLinkActive="true">Area Configuration</a></li>
+                    <li><a routerLink="/property-status" routerLinkActive="true">Property Status</a></li>
+                    <li><a routerLink="/property-watchlist" routerLinkActive="true">Property Watchlist</a></li>
+                    <!--<li><a routerLink="/property-relay-status-parent" routerLinkActive="true">Property Relay Status-->
+                        <!--Parent</a></li>-->
+                    <!--<li><a routerLink="/property-relay-status-child" routerLinkActive="true">Property Relay Status-->
+                        <!--Child</a></li>-->
+                    <!--<li><a routerLink="/property-relay-status-child-log" routerLinkActive="true">Property Relay-->
+                        <!--Status Child Log</a></li>-->
+                    <li><a routerLink="/property-attachment-management" routerLinkActive="true">Property Attachment
+                        Management</a></li>
+                    <li><a routerLink="/property-aminities-name" routerLinkActive="true">Property Amenities Name</a>
+                    </li>
+                    <li><a routerLink="/property-aminities" routerLinkActive="true">Property Amenities</a></li>
+                    <li><a routerLink="/property-facilities" routerLinkActive="true">Property Facilities</a></li>
+                    <li><a routerLink="/property-facilities-name" routerLinkActive="true">Property Facilities
+                        Name</a></li>
+                    <!--<li><a routerLink="/property-rating" routerLinkActive="true">Property Rating</a></li>-->
+                    <!--<li><a routerLink="/property-reviews" routerLinkActive="true">Property Reviews</a></li>-->
+                    <!--<li><a routerLink="/property-reviews-rating" routerLinkActive="true">Property Reviews Rating</a>-->
+                    <!--</li>-->
+                    <li><a routerLink="/dividend-payment" routerLinkActive="true">Dividend Payment</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#walletModule" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Wallet</a>
+                <ul class="collapse list-unstyled" id="walletModule">
+                    <li><a routerLink="/wallet-investor-client" routerLinkActive="true">Wallet Investor</a></li>
+                    <li><a routerLink="/wallet-smart-crowd" routerLinkActive="true">Wallet Smart Crowd</a></li>
+                    <li><a routerLink="/wallet-investor-deposit" routerLinkActive="true">Wallet Investor Deposit</a>
+                    <li><a routerLink="/wallet-investor" routerLinkActive="true">Investor's Wallet</a>
+                    </li>
+                    <!--<li><a routerLink="/wallet-investor-deposit-client" routerLinkActive="true">Wallet Investor-->
+                    <!--Deposit Client</a></li>-->
+                    <li><a routerLink="/wallet-withdrawl-pocess" routerLinkActive="true">Wallet Withdrawal
+                        Process</a></li>
+                    <!--<li><a routerLink="/invest-on-property" routerLinkActive="true">Invest on property</a></li>-->
+                    <!--<li><a routerLink="/invest-payment" routerLinkActive="true">Payment on invest</a></li>-->
+                    <!--<li><a routerLink="/investor-property" routerLinkActive="true">Investor Property</a></li>-->
+                    <!--<li><a routerLink="/wallet-invest-question-bank" routerLinkActive="true">Wallet Invest Question-->
+                        <!--Bank</a></li>-->
+                    <!--<li><a routerLink="/wallet-pay-invest-instruct" routerLinkActive="true">Wallet Pay Invest-->
+                        <!--Instruct</a></li>-->
+                    <!--<li><a routerLink="/wallet-pay-lock-duration" routerLinkActive="true">Wallet Pay Lock-->
+                        <!--Duration</a></li>-->
+                    <!--<li><a routerLink="/wallet-payment-option" routerLinkActive="true">Wallet Payment Option</a>-->
+                    <!--</li>-->
+                    <li><a routerLink="/wallet-transaction" routerLinkActive="true">Wallet Transaction</a></li>
+                    <!--<li><a routerLink="/wallet-transaction-log" routerLinkActive="true">Wallet Transaction Log</a>-->
+                    <!--</li>-->
+                    <!--<li><a routerLink="/wallet-invest-qresult-bank" routerLinkActive="true">Wallet Invest Qresult-->
+                        <!--Bank</a></li>-->
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#promocodemodule" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Promo
+                    Code</a>
+                <ul class="collapse list-unstyled" id="promocodemodule">
+                    <!--<li><a routerLink="/promocode-generate" routerLinkActive="true">Promocode Generate</a></li>-->
+                    <li><a routerLink="/promocode-email" routerLinkActive="true">Promocode Email</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#umracModule" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">UMRAC</a>
+                <ul class="collapse list-unstyled" id="umracModule">
+                    <li><a routerLink="/umrac-module-setup" routerLinkActive="true">Umrac Module Setup</a></li>
+                    <li><a routerLink="/umrac-submodule-setup" routerLinkActive="true">Umrac Submodule Setup</a>
+                    </li>
+                    <li><a routerLink="/umrac-identity-setup" routerLinkActive="true">Umrac Identity Setup</a></li>
+                    <li><a routerLink="/umrac-role-setup" routerLinkActive="true">Umrac Role Setup</a></li>
+                    <li><a routerLink="/wallet-withdrawl-pocess" routerLinkActive="true">Wallet Withdrawal
+                        Process</a></li>
+                    <li><a routerLink="/umrac-rights-setup" routerLinkActive="true">Umrac Rights Setup</a></li>
+                    <li><a routerLink="/umrac-password-change" routerLinkActive="true">Umrac Password Change</a>
+                    </li>
+                    <li><a routerLink="/umrac-rights-log" routerLinkActive="true">Umrac Rights Log</a></li>
+                    <li><a routerLink="/umrac-role-assign-user" routerLinkActive="true">Umrac Role Assign User</a>
+                    </li>
+                    <li><a routerLink="/audit-ddl" routerLinkActive="true">Audit Ddl</a></li>
+                    <li><a routerLink="/audit-log" routerLinkActive="true">Audit Log</a></li>
+                    <li><a routerLink="/audit-log-history" routerLinkActive="true">Audit Log History</a></li>
+                    <li><a routerLink="/umrac-action-setup" routerLinkActive="true">Umrac Action Setup</a></li>
+                    <li><a routerLink="/otp-management" routerLinkActive="true">Otp Management</a></li>
+                    <li><a routerLink="/property-status-log" routerLinkActive="true">Property Status Log</a></li>
+                    <li><a routerLink="/property-status-list" routerLinkActive="true">Property Status List</a></li>
+                    <li><a routerLink="/fee-type" routerLinkActive="true">Fee Type</a></li>
+                    <li><a routerLink="/fee-configuration-type" routerLinkActive="true">Fee Configuration Type</a>
+                    </li>
+                    <li><a routerLink="/fee-configuration" routerLinkActive="true">Fee Configuration</a></li>
+                    <li><a routerLink="/wallet-smart-crowd-log" routerLinkActive="true">Wallet Smart Crowd Log</a>
+                    </li>
+                    <li><a routerLink="/investor-property-log" routerLinkActive="true">Investor Property Log</a>
+                    </li>
+                    <li><a routerLink="/property-market-value-update-log" routerLinkActive="true">Property Market
+                        Value Update Log</a></li>
+                    <li><a routerLink="/notes" routerLinkActive="true">Notes</a></li>
+                    <li><a routerLink="/sc-partner" routerLinkActive="true">Sc Partner</a></li>
+                    <li><a routerLink="/external-user" routerLinkActive="true">External Users</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="list-unstyled CTAs">
+            <li style="margin-right:5px;">
+                <a class="btn-signup" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
+                    <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
+                    <span jhiTranslate="global.menu.account.register">Sign up</span>
+                </a>
+            </li>
+            <li style="margin-right:5px;">
+                <a class="article" (click)="userUtil.logout()">
+                    <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>Logout</a>
+            </li>
+        </ul>
+    </nav>
+</div>
