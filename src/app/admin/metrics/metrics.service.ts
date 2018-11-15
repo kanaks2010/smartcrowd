@@ -1,18 +1,17 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class JhiMetricsService {
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
-    /*getMetrics(): Observable<any> {
+    getMetrics() {
         return this.http.get('management/metrics').map((res: Response) => res.json());
     }
 
-    threadDump(): Observable<any> {
+    threadDump() {
         return this.http.get('management/dump').map((res: Response) => res.json());
-    }*/
+    }
 }

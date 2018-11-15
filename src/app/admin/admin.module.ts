@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import {AuditsComponent} from './audits/audits.component';
 import {AuditsService} from './audits/audits.service';
@@ -24,6 +25,7 @@ import {FormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {RouterModule} from '@angular/router';
 import {adminState} from './admin.route';
+import {SharedModule, UserService} from '../shared';
 
 const ENTITY_STATES = [
   ...adminState
@@ -49,7 +51,7 @@ const ENTITY_STATES = [
     JhiMetricsMonitoringModalComponent
   ],
   imports: [
-    CommonModule, RouterModule, FormsModule, NgxPaginationModule,
+    CommonModule, RouterModule, FormsModule, NgxPaginationModule, HttpClientModule, SharedModule,
     RouterModule.forChild(ENTITY_STATES)
   ],
   entryComponents: [
@@ -66,7 +68,8 @@ const ENTITY_STATES = [
     LogsService,
     UserResolvePagingParams,
     UserResolve,
-    UserModalService
+    UserModalService,
+    UserService
   ]
 })
 export class AdminModule { }

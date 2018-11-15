@@ -11,7 +11,7 @@ import {AuditsService} from './audits.service';
     templateUrl: './audits.component.html'
 })
 export class AuditsComponent implements OnInit {
-    audits: Audit[];
+    audits: any;
     fromDate: string;
     itemsPerPage: any;
     links: any;
@@ -43,6 +43,7 @@ export class AuditsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.audits = [];
         this.today();
         this.previousMonth();
         this.onChangeDate();
@@ -54,9 +55,9 @@ export class AuditsComponent implements OnInit {
             fromDate: this.fromDate, toDate: this.toDate
         }).subscribe((res) => {
 
-            this.audits = res.json();
+            this.audits = res;
             // this.links = this.parseLinks.parse(res.headers.get('link'));
-            this.totalItems = +res.headers.get('X-Total-Count');
+            // this.totalItems = +res.headers.get('X-Total-Count');
         });
     }
 

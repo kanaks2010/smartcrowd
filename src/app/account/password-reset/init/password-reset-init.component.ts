@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, Renderer, ElementRef} from '@angular/core';
 
 import {PasswordResetInitService} from './password-reset-init.service';
-// import {EMAIL_NOT_FOUND_TYPE} from '../../../shared';
+import {EMAIL_NOT_FOUND_TYPE} from '../../../shared';
 
 @Component({
     selector: 'app-password-reset-init',
@@ -32,7 +32,7 @@ export class PasswordResetInitComponent implements OnInit, AfterViewInit {
         this.error = null;
         this.errorEmailNotExists = null;
 
-        /*this.passwordResetInitService.save(this.resetAccount.email).subscribe(() => {
+        this.passwordResetInitService.save(this.resetAccount.email).subscribe(() => {
             this.success = 'OK';
         }, (response) => {
             this.success = null;
@@ -41,6 +41,6 @@ export class PasswordResetInitComponent implements OnInit, AfterViewInit {
             } else {
                 this.error = 'ERROR';
             }
-        });*/
+        });
     }
 }

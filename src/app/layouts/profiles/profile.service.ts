@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 
 import {SERVER_API_URL} from '../../app.constants';
 import {ProfileInfo} from './profile-info.model';
@@ -10,7 +10,7 @@ export class ProfileService {
     private profileInfoUrl = SERVER_API_URL + 'api/profile-info';
     private profileInfo: Promise<ProfileInfo>;
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
     // getProfileInfo(): Promise<ProfileInfo> {

@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class JhiConfigurationService {
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
-    /*get(): Observable<any> {
+    get() {
         return this.http.get('management/configprops').map((res: Response) => {
             const properties: any[] = [];
             const propertiesObject = res.json();
@@ -22,9 +21,9 @@ export class JhiConfigurationService {
                     (propertyA.prefix < propertyB.prefix) ? -1 : 1;
             });
         });
-    }*/
+    }
 
-    /*getEnv(): Observable<any> {
+    getEnv() {
         return this.http.get('management/env').map((res: Response) => {
             const properties: any = {};
             const propertiesObject = res.json();
@@ -42,5 +41,5 @@ export class JhiConfigurationService {
             }
             return properties;
         });
-    }*/
+    }
 }
