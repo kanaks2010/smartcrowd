@@ -1,0 +1,81 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myNotificationsLabel"
+            jhiTranslate="smartcrowdApp.notifications.home.createOrEditLabel">Create or edit a Notifications</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <!--<jhi-alert-error></jhi-alert-error>-->
+        <!--<div class="form-group" [hidden]="!notifications.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="notifications.id" readonly />
+        </div>-->
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.notifyDate"
+                   for="field_notifyDate">Notify Date</label>
+            <div class="input-group">
+                <input id="field_notifyDate" type="text" class="form-control" name="notifyDate" ngbDatepicker
+                       #notifyDateDp="ngbDatepicker" [(ngModel)]="notifications.notifyDate" readonly
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="notifyDateDp.toggle()"><i
+                        class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.stateUrl" for="field_stateUrl">State
+                Url</label>
+            <input type="text" class="form-control" name="stateUrl" id="field_stateUrl"
+                   [(ngModel)]="notifications.stateUrl"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.notes"
+                   for="field_notes">Notes</label>
+            <input type="text" class="form-control" name="notes" id="field_notes"
+                   [(ngModel)]="notifications.notes"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.sourceUserId"
+                   for="field_sourceUserId">Source User Id</label>
+            <input type="number" class="form-control" name="sourceUserId" id="field_sourceUserId"
+                   [(ngModel)]="notifications.sourceUserId"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.purpose" for="field_purpose">Purpose</label>
+            <input type="text" class="form-control" name="purpose" id="field_purpose"
+                   [(ngModel)]="notifications.purpose"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.status" for="field_status">Status</label>
+            <input type="checkbox" class="form-control" name="status" id="field_status"
+                   [(ngModel)]="notifications.status"/>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="smartcrowdApp.notifications.destinationUserId"
+                   for="field_destinationUserId">Destination User Id</label>
+            <select class="form-control" id="field_destinationUserId" name="destinationUserId"
+                    [(ngModel)]="notifications.destinationUserId">
+                <option [ngValue]="null"></option>
+                <option
+                    [ngValue]="userOption.id === notifications.destinationUserId?.id ? notifications.destinationUserId : userOption"
+                    *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

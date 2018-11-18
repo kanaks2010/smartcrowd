@@ -1,25 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate} from '@angular/router';
-
 // import {JhiPaginationUtil} from 'ng-jhipster';
-
 import {UserMgmtComponent} from './user-management.component';
 import {UserMgmtDetailComponent} from './user-management-detail.component';
 import {UserDialogComponent} from './user-management-dialog.component';
 import {UserDeleteDialogComponent} from './user-management-delete-dialog.component';
 
-// import {Principal} from '../../shared';
+import {Principal} from '../../shared';
 
 @Injectable()
 export class UserResolve {
 
     constructor(
-      // private principal: Principal
+      private principal: Principal
     ) {
     }
 
     canActivate() {
-        // return this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_ADMIN']));
+        return this.principal.identity().then((account) => this.principal.hasAnyAuthority(['ROLE_ADMIN']));
     }
 }
 

@@ -4,7 +4,7 @@ import {DatePipe} from '@angular/common';
 
 import {Audit} from './audit.model';
 import {AuditsService} from './audits.service';
-// import {ITEMS_PER_PAGE} from '../../shared';
+import {ITEMS_PER_PAGE} from '../../shared';
 
 @Component({
     selector: 'app-audit',
@@ -26,7 +26,7 @@ export class AuditsComponent implements OnInit {
         private auditsService: AuditsService,
         // private parseLinks: JhiParseLinks
     ) {
-        // this.itemsPerPage = ITEMS_PER_PAGE;
+        this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 1;
         this.reverse = false;
         this.orderProp = 'timestamp';

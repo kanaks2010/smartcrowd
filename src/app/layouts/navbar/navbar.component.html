@@ -92,7 +92,13 @@
             <li>
                 <div class="verticalhr"></div>
             </li>
-            <li *ngSwitchCase="false" style="margin-right:5px;">
+            <li style="margin-right:5px;">
+                <a class="btn-iis" (click)="changeRoute();login();" routerLinkActive="active" id="login">
+                    <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
+                    <span jhiTranslate="global.menu.account.login">Sign in</span>
+                </a>
+            </li>
+          <li *ngSwitchCase="false" style="margin-right:5px;">
                 <a class="btn-iis" (click)="changeRoute();login();" routerLinkActive="active" id="login">
                     <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.account.login">Sign in</span>

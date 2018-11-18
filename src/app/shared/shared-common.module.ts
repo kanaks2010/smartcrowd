@@ -4,7 +4,6 @@ import {Title} from '@angular/platform-browser';
 import {WindowRef} from './tracker/window.service';
 import {
     SmartcrowdSharedLibsModule,
-    JhiLanguageHelper,
     FindLanguageFromKeyPipe,
     JhiAlertComponent,
     JhiAlertErrorComponent
@@ -76,7 +75,6 @@ export class NumNotRoundPipe implements PipeTransform {
     ],
     providers: [
         FindLanguageFromKeyPipe,
-        JhiLanguageHelper,
         WindowRef,
         Title,
         {

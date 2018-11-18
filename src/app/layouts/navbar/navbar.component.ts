@@ -5,24 +5,23 @@ import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 import {Observable} from 'rxjs';
 
-// import {ProfileService} from '../profiles/profile.service';
-// import {
-//   Account,
-//   JhiLanguageHelper,
-//   LoginModalService,
-//   LoginService,
-//   Principal,
-//   ResponseWrapper,
-//   User,
-//   UserService
-// } from '../../shared';
+import {ProfileService} from '../profiles/profile.service';
+import {
+  Account,
+  LoginModalService,
+  LoginService,
+  Principal,
+  ResponseWrapper,
+  User,
+  UserService
+} from '../../shared';
 
-// import {VERSION} from '../../app.constants';
-// import {Notifications} from '../../entities/notifications/notifications.model';
-// import {NotificationsService} from '../../entities/notifications/notifications.service';
+import {VERSION} from '../../app.constants';
+import {Notifications} from '../../entities/notifications/notifications.model';
+import {NotificationsService} from '../../entities/notifications/notifications.service';
 // import {InvestorRegistration, InvestorRegistrationService} from '../../entities/investor-registration';
-// import {GlobalValues} from '../../shared/model/global-values';
-// import {UserUtil} from '../../shared/user/user-util';
+import {GlobalValues} from '../../shared/model/global-values';
+import {UserUtil} from '../../shared/user/user-util';
 
 
 @Component({
@@ -42,37 +41,37 @@ export class NavbarComponent implements OnInit {
   account: Account;
   uname: String;
   adminLoginFlag: boolean;
-  // notifications: Notifications[];
-  // notification: Notifications;
+  notifications: Notifications[];
+  notification: Notifications;
   notificationSize: any;
   // investorRegistrationCheck: InvestorRegistration;
-  // user: User;
+  user: User;
   checkAdmin: boolean;
 
 
   constructor(
-    // private loginService: LoginService,
+    private loginService: LoginService,
     // private languageService: JhiLanguageService,
     // private languageHelper: JhiLanguageHelper,
-    // private principal: Principal,
-    // private loginModalService: LoginModalService,
-    // private profileService: ProfileService,
-    // private notificationsService: NotificationsService,
+    private principal: Principal,
+    private loginModalService: LoginModalService,
+    private profileService: ProfileService,
+    private notificationsService: NotificationsService,
     // private jhiAlertService: JhiAlertService,
     private router: Router,
     // private investorRegistrationService: InvestorRegistrationService,
-    // private userService: UserService,
+    private userService: UserService,
     // public globalValues: GlobalValues,
-    // public userUtil: UserUtil
+    public userUtil: UserUtil
   ) {
-    // this.version = VERSION ? 'v' + VERSION : '';
+    this.version = VERSION ? 'v' + VERSION : '';
     this.isNavbarCollapsed = true;
   }
 
   ngOnInit() {
     console.log('this.principal.hasAnyAuthorityDirect(["ROLE_ADMIN"])');
     // console.log(this.principal.hasAnyAuthorityDirect(['ROLE_ADMIN']));
-    /*if (!this.principal.isAuthenticated()) {
+    if (!this.principal.isAuthenticated()) {
       console.log('not authenticated');
       // this.globalValues.showSingUp = true;
     } else if (this.principal.isAuthenticated() && this.principal.hasAnyAuthorityDirect(['ROLE_ADMIN'])) {
@@ -80,8 +79,9 @@ export class NavbarComponent implements OnInit {
       // this.globalValues.showSingUp = true;
     } else if (this.principal.isAuthenticated() && !this.principal.hasAnyAuthorityDirect(['ROLE_ADMIN'])) {
       // this.globalValues.showSingUp = false;
-    }*/
-    // this.notifications = [];
+    }
+    this.notifications = [];
+
     // this.notification = {};
     this.notificationSize = 0;
     // this.investorRegistrationCheck = {};
@@ -94,14 +94,14 @@ export class NavbarComponent implements OnInit {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
     });*/
-    /*this.principal.identity().then((account) => {
+    this.principal.identity().then((account) => {
       this.account = account;
       console.log(this.account);
       if (account) {
         this.uname = account.login;
       }
       this.getNotification();
-    });*/
+    });
   }
 
   changeLanguage(languageKey: string) {
@@ -130,8 +130,7 @@ export class NavbarComponent implements OnInit {
     // this.routeCheck('/dashboard-smart-crowd');
   }
 
-/*
-  private routeCheck(url) {
+  /*private routeCheck(url) {
     this.investorRegistrationService.findinvestordetails().subscribe((investorRegistration) => {
       this.investorRegistrationCheck = investorRegistration;
       if (this.investorRegistrationCheck.id) {
@@ -172,15 +171,14 @@ export class NavbarComponent implements OnInit {
         });
       }
     });
-  }
-*/
+  }*/
 
   isAuthenticated() {
-    // return this.principal.isAuthenticated();
+     return this.principal.isAuthenticated();
   }
 
   login() {
-    // this.modalRef = this.loginModalService.open();
+    this.modalRef = this.loginModalService.open();
   }
 
   toggleNavbar() {
@@ -188,7 +186,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getImageUrl() {
-    // return this.isAuthenticated() ? this.principal.getImageUrl() : null;
+     return this.isAuthenticated() ? this.principal.getImageUrl() : null;
   }
 
   getNotification() {
@@ -213,15 +211,15 @@ export class NavbarComponent implements OnInit {
   }
 
   routeToNotifications(id: number) {
-    // if (id !== undefined) {
-    //   this.notificationsService.find(id).subscribe((result) => {
-    //     this.notification = result;
-    //     // this.notification.status = false;
-    //     this.subscribeToSaveResponse(
-    //       this.notificationsService.update(this.notification));
-    //   });
-    //
-    // }
+    if (id !== undefined) {
+      this.notificationsService.find(id).subscribe((res) => {
+        this.notification = res;
+        this.notification.status = false;
+        /*this.subscribeToSaveResponse(
+          this.notificationsService.update(this.notification));*/
+      });
+
+    }
   }
 
   // private subscribeToSaveResponse(result: Observable<Notifications>) {
@@ -234,10 +232,8 @@ export class NavbarComponent implements OnInit {
   // }
 
   changeRoute() {
-
     console.log('changing rout');
     this.router.navigate(['/']);
-    // this.router.navigateByUrl(...)
   }
 
   private onSaveError() {

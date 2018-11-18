@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 // import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
 import {ITEMS_PER_PAGE, Principal, User, UserService, ResponseWrapper} from '../../shared';
+import {Observable} from 'rxjs';
+import {headersToString} from '../../../../node_modules/@types/selenium-webdriver/http';
 
 @Component({
     selector: 'app-user-mgmt',
@@ -11,7 +13,7 @@ import {ITEMS_PER_PAGE, Principal, User, UserService, ResponseWrapper} from '../
 export class UserMgmtComponent implements OnInit, OnDestroy {
 
     currentAccount: any;
-    users: User[];
+    users: Observable<User[]>;
     error: any;
     success: any;
     routeData: any;
@@ -34,12 +36,12 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
         private router: Router
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
-        // this.routeData = this.activatedRoute.data.subscribe((data) => {
-        //     this.page = data['pagingParams'].page;
-        //     this.previousPage = data['pagingParams'].page;
-        //     this.reverse = data['pagingParams'].ascending;
-        //     this.predicate = data['pagingParams'].predicate;
-        // });
+        this.routeData = this.activatedRoute.data.subscribe((data) => {
+            this.page = data['pagingParams'].page;
+            this.previousPage = data['pagingParams'].page;
+            this.reverse = data['pagingParams'].ascending;
+            this.predicate = data['pagingParams'].predicate;
+        });
     }
 
     ngOnInit() {

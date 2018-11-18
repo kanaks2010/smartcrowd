@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-leftmenu',
+    selector: 'app-left-menu',
     templateUrl: './leftmenu.component.html',
     styleUrls: ['./leftmenu.component.css']
 })

@@ -27,9 +27,8 @@ export class JhiConfigurationComponent implements OnInit {
     }
 
     ngOnInit() {
-        /*this.configurationService.get().subscribe((configuration) => {
+        this.configurationService.get().subscribe((configuration) => {
             this.configuration = configuration;
-
             for (const config of configuration) {
                 if (config.properties !== undefined) {
                     this.configKeys.push(Object.keys(config.properties));
@@ -39,6 +38,6 @@ export class JhiConfigurationComponent implements OnInit {
 
         this.configurationService.getEnv().subscribe((configuration) => {
             this.allConfiguration = configuration;
-        });*/
+        });
     }
 }

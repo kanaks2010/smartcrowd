@@ -38,7 +38,7 @@ export class JhiHealthCheckComponent implements OnInit {
     refresh() {
         this.updatingHealth = true;
 
-        /*this.healthService.checkHealth().subscribe((health) => {
+        this.healthService.checkHealth().subscribe((health) => {
             this.healthData = this.healthService.transformHealthData(health);
             this.updatingHealth = false;
         }, (error) => {
@@ -46,7 +46,7 @@ export class JhiHealthCheckComponent implements OnInit {
                 this.healthData = this.healthService.transformHealthData(error.json());
                 this.updatingHealth = false;
             }
-        });*/
+        });
     }
 
     showHealth(health: any) {

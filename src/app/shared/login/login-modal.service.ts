@@ -9,7 +9,7 @@ export class LoginModalService {
 
     constructor(
         private modalService: NgbModal,
-        private globalValues: GlobalValues
+        // private globalValues: GlobalValues
     ) {
     }
 
@@ -18,7 +18,7 @@ export class LoginModalService {
             return;
         }
         this.isOpen = true;
-        this.globalValues.propertyIdFromLandingPageToViewDetails = 0;
+        // this.globalValues.propertyIdFromLandingPageToViewDetails = 0;
         const modalRef = this.modalService.open(JhiLoginModalComponent, {
             container: 'nav'
         });
@@ -37,7 +37,7 @@ export class LoginModalService {
         this.isOpen = true;
         console.log('propertyId in login modal');
         console.log(propertyId);
-        this.globalValues.propertyIdFromLandingPageToViewDetails = propertyId;
+        // this.globalValues.propertyIdFromLandingPageToViewDetails = propertyId;
         const modalRef = this.modalService.open(JhiLoginModalComponent, {
             container: 'nav'
         });

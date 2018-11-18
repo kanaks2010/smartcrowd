@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {SERVER_API_URL} from '../../app.constants';
 import {User} from './user.model';
 import {ResponseWrapper} from '..';
 import {createRequestOption} from '..';
+import {forkJoin, Observable} from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -33,32 +34,52 @@ export class UserService {
         catchError(this.handleError)
       );
   }
-  find(login: string) {
+  /*find(login: string) {
     return this.http.post(this.findUsersUrl, login)
       .pipe(
         map(responce => responce),
         catchError(this.handleError)
       );
+  }*/
+  find(login: string) {
+    return (
+      this.http.post(this.findUsersUrl, login).pipe(
+        map(responce => responce),
+        catchError(this.handleError)
+      )
+    );
   }
-  findbyid(id: number) {
+
+  /*findbyid(id: number) {
     return this.http.get(`${this.resourceUrlGetUser}/${id}`).pipe(
       map(responce => responce),
       catchError(this.handleError)
     );
+  }*/
+
+  findbyid(id: number): Observable<User> {
+    return this.http.get<User>(this.resourceUrlGetUser + '/' + id);
   }
+
   findFirstTimeLoginCheck() {
     return this.http.get(`${this.resouceUrlFindFirstTimeLoginCheck}`).pipe(
       map(responce => responce),
       catchError(this.handleError)
     );
   }
-  query(req: any) {
+  /*query(req?: any) {
     // const options = createRequestOption(req);
     return this.http.get(`${this.resourceUrl}`, req).pipe(
       map(responce => responce),
       catchError(this.handleError)
     );
+  }*/
+
+  query(req?: any): Observable<User[]> {
+    // const headers = new HttpHeaders({'Content-Type': 'text/uri-list'});
+    return this.http.get<User[]>(this.resourceUrl);
   }
+
   delete(login: string) {
     return this.http.delete(`${this.resourceUrl}/${login}`);
   }
@@ -85,7 +106,7 @@ export class UserService {
     const jsonResponse = res.json();
     return new ResponseWrapper(res.headers, jsonResponse, res.status);
   }
-  public handleError(error: any) {
+  private handleError(error: any) {
     let errMsg: string;
     if (error) {
       const body = error.json() || '';

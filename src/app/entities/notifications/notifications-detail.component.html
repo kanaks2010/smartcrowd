@@ -1,0 +1,65 @@
+<div class="box-container" *ngIf="notifications">
+    <h2><span jhiTranslate="smartcrowdApp.notifications.detail.title">Notifications</span> {{notifications.id}}</h2>
+    <hr>
+    <!--<jhi-alert-error></jhi-alert-error>-->
+    <dl class="row-md jh-entity-details flex_table">
+        <div><span jhiTranslate="smartcrowdApp.notifications.status">Status</span>
+
+            <span>{{notifications.status}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.notifyDate">Notify Date</span>
+
+            <span>{{notifications.notifyDate | date:'mediumDate'}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.stateUrl">State Url</span>
+
+            <span>{{notifications.stateUrl}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.notes">Notes</span>
+
+            <span>{{notifications.notes}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.sourceUserId">Source User Id</span>
+
+            <span>{{notifications.sourceUserId}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.purpose">Purpose</span>
+
+            <span>{{notifications.purpose}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.createDate">Create Date</span>
+
+            <span>{{notifications.createDate | date:'mediumDate'}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.createBy">Create By</span>
+
+            <span>{{userCreateBy.firstName}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.updateBy">Update By</span>
+
+            <span>{{userUpdateBy.firstName}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.updateDate">Update Date</span>
+
+            <span>{{notifications.updateDate | date:'mediumDate'}}</span>
+        </div>
+        <div><span jhiTranslate="smartcrowdApp.notifications.destinationUserId">Destination User Id</span>
+
+            <span>{{notifications.destinationUserId?.id}}</span>
+        </div>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'notifications/'+ notifications.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

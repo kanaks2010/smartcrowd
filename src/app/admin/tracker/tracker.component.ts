@@ -1,6 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-
-// import {JhiTrackerService} from '../../shared';
+import {JhiTrackerService} from '../../shared';
 
 @Component({
     selector: 'app-tracker',
@@ -11,7 +10,7 @@ export class JhiTrackerComponent implements OnInit, OnDestroy {
     activities: any[] = [];
 
     constructor(
-        // private trackerService: JhiTrackerService
+         private trackerService: JhiTrackerService
     ) {
     }
 
@@ -33,13 +32,13 @@ export class JhiTrackerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // this.trackerService.subscribe();
-        // this.trackerService.receive().subscribe((activity) => {
-        //     this.showActivity(activity);
-        // });
+         this.trackerService.subscribe();
+         this.trackerService.receive().subscribe((activity) => {
+            this.showActivity(activity);
+         });
     }
 
     ngOnDestroy() {
-        // this.trackerService.unsubscribe();
+         this.trackerService.unsubscribe();
     }
 }

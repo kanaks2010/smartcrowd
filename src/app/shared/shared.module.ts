@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {CommonModule, DatePipe} from '@angular/common';
 import {UserService} from './user/user.service';
 import {SmartcrowdSharedLibsModule} from './shared-libs.module';
@@ -39,8 +39,17 @@ import {LocalStorageService, SessionStorageService} from 'ng2-webstorage';
     JhiTrackerService,
     AuthServerProvider,
     SocialService,
-    UserService,
+    UserService
+  ],
+  entryComponents: [JhiLoginModalComponent],
+  exports: [
+    SmartcrowdSharedCommonModule,
+    JhiSocialComponent,
+    JhiLoginModalComponent,
+    HasAnyAuthorityDirective,
     DatePipe
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class SharedModule { }

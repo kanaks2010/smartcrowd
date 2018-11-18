@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRouteSnapshot, NavigationEnd} from '@angular/router';
 
 // import {JhiLanguageHelper} from '../../shared';
-// import {GlobalValues} from "../../shared/model/global-values";
+import {GlobalValues} from '../../shared/model/global-values';
 import * as $ from 'jquery';
 @Component({
     selector: 'app-main',

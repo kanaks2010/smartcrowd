@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-
 import {JhiMetricsMonitoringModalComponent} from './metrics-modal.component';
 import {JhiMetricsService} from './metrics.service';
 
@@ -23,12 +22,12 @@ export class JhiMetricsMonitoringComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.refresh();
+        // this.refresh();
     }
 
-    refresh() {
+    /*refresh() {
         this.updatingMetrics = true;
-        /*this.metricsService.getMetrics().subscribe((metrics) => {
+        this.metricsService.getMetrics().subscribe((metrics) => {
             this.metrics = metrics;
             this.updatingMetrics = false;
             this.servicesStats = {};
@@ -45,7 +44,6 @@ export class JhiMetricsMonitoringComponent implements OnInit {
                     // remove gets or puts
                     const index = key.lastIndexOf('.');
                     const newKey = key.substr(0, index);
-
                     // Keep the name of the domain
                     this.cachesStats[newKey] = {
                         'name': this.JCACHE_KEY.length,
@@ -53,19 +51,20 @@ export class JhiMetricsMonitoringComponent implements OnInit {
                     };
                 }
             });
-        });*/
-    }
+        });
+    }*/
 
     refreshThreadDumpData() {
-        /*this.metricsService.threadDump().subscribe((data) => {
+        this.metricsService.threadDump().subscribe((data) => {
             const modalRef = this.modalService.open(JhiMetricsMonitoringModalComponent, {size: 'lg'});
             modalRef.componentInstance.threadDump = data;
             modalRef.result.then((result) => {
                 // Left blank intentionally, nothing to do here
             }, (reason) => {
+              console.log(reason);
                 // Left blank intentionally, nothing to do here
             });
-        });*/
+        });
     }
 
     filterNaN(input) {
@@ -74,5 +73,4 @@ export class JhiMetricsMonitoringComponent implements OnInit {
         }
         return input;
     }
-
 }

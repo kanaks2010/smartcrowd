@@ -1,10 +1,11 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {DatePipe} from '@angular/common';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AdminLoginComponent} from './admin-login.component';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
-    imports: [],
+    imports: [CommonModule, FormsModule],
     declarations: [
         AdminLoginComponent
     ],
@@ -12,10 +13,8 @@ import {AdminLoginComponent} from './admin-login.component';
         AdminLoginComponent,
     ],
     providers: [
-        DatePipe
     ],
     exports: [
-        DatePipe
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
